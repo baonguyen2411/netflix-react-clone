@@ -1,2 +1,1 @@
-# netflix-react-clone
-An application Netflix Clone
+# my-structure-react-app
