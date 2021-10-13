@@ -1,0 +1,31 @@
+.nf-nav {
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  width: 100%;
+  z-index: 1;
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
+
+  &--black {
+    background-color: black;
+  }
+
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 80px;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  &__avatar {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
