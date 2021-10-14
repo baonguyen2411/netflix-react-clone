@@ -3,26 +3,9 @@ import { lazy } from 'react';
 const routes = [
   {
     path: '/',
-    component: lazy(() => import('./pages/LandingPage')),
+    component: lazy(() => import('./pages/HomePage')),
     exact: true,
-    requiredAuthen: true,
-  },
-  {
-    path: '/setting',
-    component: lazy(() => import('./pages/SettingPage')),
-    exact: false,
-    requiredAuthen: true,
-  },
-  {
-    path: '/file-manager',
-    component: lazy(() => import('./pages/FileManager')),
-    exact: false,
-    requiredAuthen: true,
-  },
-  {
-    path: '/user',
-    component: lazy(() => import('./pages/UserPage')),
-    exact: false,
+    requiredAuthen: false,
   },
 ];
 
