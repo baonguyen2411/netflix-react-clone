@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
+
+import logo from '../../../assets/images/netflix-logo.png';
+import avatar from '../../../assets/images/netflix-avatar.png';
 
 import './styles.scss';
 
@@ -24,13 +27,9 @@ const Nav = () => {
   return (
     <div className={`nf-nav ${show ? 'nf-nav--black' : ''}`}>
       <div className="nf-nav__contents">
+        <img src={logo} alt="Netflix Logo" className="nf-nav__logo" />
         <img
-          src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
-          alt="Netflix Logo"
-          className="nf-nav__logo"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+          src={avatar}
           alt="Avatar Profile Netflix"
           className="nf-nav__avatar"
         />
@@ -39,4 +38,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default memo(Nav);
