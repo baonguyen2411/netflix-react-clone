@@ -1,13 +1,13 @@
 import axios from 'axios';
-import moment from 'moment-timezone';
+// import moment from 'moment-timezone';
 
 const instance = axios.create({
-  baseURL: '',
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-    'X-Timezone-Offset': moment.tz.guess(),
-    Authorization: 'Bearer ',
-  },
+  baseURL: 'https://api.themoviedb.org/3',
+  // headers: {
+  //   'Content-Type': 'application/json; charset=utf-8',
+  //   'X-Timezone-Offset': moment.tz.guess(),
+  //   Authorization: 'Bearer ',
+  // },
 });
 
 export default {
