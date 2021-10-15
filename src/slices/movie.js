@@ -3,8 +3,8 @@ import { createSelector } from 'reselect';
 
 export const ROOT_STATE_NAME = 'movie';
 const initialState = {
-  movie: {
-    data: [],
+  movies: {
+    data: {},
     status: 'idle',
     error: null,
   },
@@ -14,24 +14,27 @@ const movieSlice = createSlice({
   name: ROOT_STATE_NAME,
   initialState,
   reducers: {
-    getMovieRequest(state) {
-      state.movie.status = 'loading';
+    getMoviesRequest(state) {
+      state.movies.status = 'loading';
     },
-    getMovieSuccess(state, action) {
-      state.movie.status = 'succeeded';
-      state.movie.data = action.payload;
-      state.movie.error = null;
+    getMoviesSuccess(state, action) {
+      state.movies.status = 'succeeded';
+      state.movies.data = action.payload;
+      state.movies.error = null;
     },
-    getMovieFailure(state, action) {
-      state.movie.status = 'failed';
-      state.movie.data = [];
-      state.movie.error = action.payload;
+    getMoviesFailure(state, action) {
+      state.movies.status = 'failed';
+      state.movies.data = [];
+      state.movies.error = action.payload;
     },
   },
 });
 
 const { actions, reducer } = movieSlice;
 export default reducer;
-export const { getMovieRequest, getMovieSuccess, getMovieFailure } = actions;
+export const { getMoviesRequest, getMoviesSuccess, getMoviesFailure } = actions;
 export const rootSelector = (state) => state[ROOT_STATE_NAME] || {};
-export const movieSelector = createSelector(rootSelector, ({ movie }) => movie);
+export const moviesSelector = createSelector(
+  rootSelector,
+  ({ movies }) => movies,
+);
