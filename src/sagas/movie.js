@@ -5,12 +5,12 @@ import api from '../services/api';
 import requests from '../constants/requests';
 
 import {
-  getMovieRequest,
-  getMovieSuccess,
-  getMovieFailure,
+  getMoviesRequest,
+  getMoviesSuccess,
+  getMoviesFailure,
 } from '../slices/movie';
 
-export function* getMovie() {
+export function* getMovies() {
   try {
     const request = yield call(api.getData, {
       url: requests.fetchNetflixOriginals,
@@ -18,15 +18,15 @@ export function* getMovie() {
 
     if (request && request?.data) {
       yield delay(500);
-      yield put(getMovieSuccess([]));
+      yield put(getMoviesSuccess(request?.data));
     }
   } catch (error) {
     const { message = 'Something went wrong!' } = error;
 
-    yield put(getMovieFailure(message));
+    yield put(getMoviesFailure(message));
   }
 }
 
 export default function* movieSaga() {
-  yield takeEvery(getMovieRequest().type, getMovie);
+  yield takeEvery(getMoviesRequest().type, getMovies);
 }
