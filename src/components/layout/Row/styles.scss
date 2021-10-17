@@ -1,0 +1,33 @@
+.nf-row {
+  color: white;
+  margin-left: 20px;
+
+  &__posters {
+    display: flex;
+    align-items: center;
+    overflow: scroll hidden;
+    padding: 20px;
+    padding-left: 0px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__poster {
+    width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    margin-right: 10px;
+    transition: transform 450ms;
+
+    &--large {
+      max-height: 250px;
+    }
+
+    &:hover {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+  }
+}

@@ -10,10 +10,10 @@ import {
   getMoviesFailure,
 } from '../slices/movie';
 
-export function* getMovies() {
+export function* getMovies({ payload }) {
   try {
     const request = yield call(api.getData, {
-      url: requests.fetchNetflixOriginals,
+      url: payload?.url || requests.fetchNetflixOriginals,
     });
 
     if (request && request?.data) {
