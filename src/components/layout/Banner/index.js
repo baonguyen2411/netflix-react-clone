@@ -1,32 +1,16 @@
-import React, { memo, useEffect, useCallback, useMemo } from 'react';
+import React, { memo, useEffect } from 'react';
 // import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux';
 
-import { moviesSelector, getMoviesRequest } from '../../../slices/movie';
+import { DYNAMIC_PROPS } from '../../../slices/movie';
+import useMovie from '../../../hooks/useMovie';
 
 import './styles.scss';
 
 const Banner = () => {
-  const movies = useSelector(moviesSelector);
-
-  const movie = useMemo(() => {
-    if (movies?.data?.results) {
-      return movies.data.results[
-        Math.floor(Math.random() * movies.data.results.length - 1)
-      ];
-    }
-
-    return {};
-  }, [movies]);
-
-  const dispatch = useDispatch();
-
-  const getMovie = useCallback(() => {
-    dispatch(getMoviesRequest());
-  }, []);
+  const { movie, getMovies } = useMovie(DYNAMIC_PROPS?.trending);
 
   useEffect(() => {
-    getMovie();
+    getMovies({ prop: DYNAMIC_PROPS?.trending, url: null });
   }, []);
 
   const truncate = (str, n) => {
