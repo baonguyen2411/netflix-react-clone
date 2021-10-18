@@ -12,18 +12,18 @@ import {
 
 export function* getMovies({ payload }) {
   try {
-    const request = yield call(api.getData, {
+    const { data } = yield call(api.getData, {
       url: payload?.url || requests.fetchNetflixOriginals,
     });
 
-    if (request && request?.data) {
+    if (data) {
       yield delay(500);
-      yield put(getMoviesSuccess(request?.data));
+      yield put(getMoviesSuccess({ prop: payload?.prop, data }));
     }
   } catch (error) {
     const { message = 'Something went wrong!' } = error;
 
-    yield put(getMoviesFailure(message));
+    yield put(getMoviesFailure({ prop: payload?.prop, error: message }));
   }
 }
 

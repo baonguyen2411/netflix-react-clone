@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { moviesSelector, getMoviesRequest } from '../slices/movie';
 
-const useMovie = () => {
+const useMovie = (type) => {
   const [movie, setMovie] = useState({});
-  const [movies, setMovies] = useState([]);
 
-  const moviesData = useSelector(moviesSelector);
+  const movies = useSelector(moviesSelector(type));
 
   const dispatch = useDispatch();
 
@@ -16,16 +15,14 @@ const useMovie = () => {
   }, []);
 
   useEffect(() => {
-    setMovies(moviesData);
-
-    if (moviesData?.data?.results) {
+    if (movies?.data?.results) {
       setMovie(
-        moviesData.data.results[
-          Math.floor(Math.random() * moviesData.data.results.length - 1)
+        movies.data.results[
+          Math.floor(Math.random() * movies.data.results.length - 1)
         ],
       );
     }
-  }, [moviesData]);
+  }, [movies]);
 
   return { movie, movies, getMovies };
 };

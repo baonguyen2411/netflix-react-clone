@@ -1,15 +1,16 @@
 import React, { memo, useEffect } from 'react';
 // import PropTypes from 'prop-types'
 
+import { DYNAMIC_PROPS } from '../../../slices/movie';
 import useMovie from '../../../hooks/useMovie';
 
 import './styles.scss';
 
 const Banner = () => {
-  const { movie, getMovies } = useMovie();
+  const { movie, getMovies } = useMovie(DYNAMIC_PROPS?.trending);
 
   useEffect(() => {
-    getMovies({ url: null });
+    getMovies({ prop: DYNAMIC_PROPS?.trending, url: null });
   }, []);
 
   const truncate = (str, n) => {

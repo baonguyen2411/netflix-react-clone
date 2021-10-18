@@ -7,12 +7,12 @@ import './styles.scss';
 
 const BASE_URL = 'https://image.tmdb.org/t/p/original';
 
-const Row = ({ title, fetchUrl, isLargeRow = false }) => {
-  const { movies, getMovies } = useMovie();
+const Row = ({ title, type, fetchUrl, isLargeRow = false }) => {
+  const { movies, getMovies } = useMovie(type);
 
   useEffect(() => {
-    getMovies({ url: fetchUrl });
-  }, [fetchUrl]);
+    getMovies({ prop: type, url: fetchUrl });
+  }, [type, fetchUrl]);
 
   return (
     <div className="nf-row">
@@ -40,8 +40,9 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
 
 Row.propTypes = {
   title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   fetchUrl: PropTypes.string.isRequired,
-  isLargeRow: PropTypes.bool.isRequired,
+  isLargeRow: PropTypes.bool,
 };
 
 export default memo(Row);
