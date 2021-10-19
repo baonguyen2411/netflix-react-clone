@@ -7,6 +7,12 @@ const routes = [
     exact: true,
     requiredAuthen: false,
   },
+  {
+    path: '/login',
+    component: lazy(() => import('./pages/LoginPage')),
+    exact: true,
+    requiredAuthen: false,
+  },
 ];
 
 export default routes;
